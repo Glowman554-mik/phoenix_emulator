@@ -5,13 +5,15 @@ cmake_minimum_required(VERSION 3.19.0 FATAL_ERROR)
 
 set(MBED_PATH ${CMAKE_CURRENT_SOURCE_DIR}/mbed-os CACHE INTERNAL "")
 set(MBED_CONFIG_PATH ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "")
-set(APP_TARGET blink)
+set(APP_TARGET phoenix_emulator)
 
 include(${MBED_PATH}/tools/cmake/app.cmake)
 
 add_subdirectory(${MBED_PATH})
 
 add_executable(${APP_TARGET})
+
+include_directories(${APP_TARGET} include)
 
 mbed_configure_app_target(${APP_TARGET})
 

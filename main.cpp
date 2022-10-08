@@ -62,7 +62,7 @@ PortOut port0_out(PortC, 0b11111111);
 PortIn port0_in(PortC, 0b1111111100000000);
 
 uint8_t cpu_io_read(uint16_t addr) {
-	debugf("reading byte from io at 0x%x", addr);
+	/// debugf("reading byte from io at 0x%x", addr);
 
     switch (addr) {
         case 0x0:
@@ -73,7 +73,7 @@ uint8_t cpu_io_read(uint16_t addr) {
 }
 
 void cpu_io_write(uint16_t addr, uint8_t val) {
-    debugf("writing byte 0x%x to io at 0x%x", val, addr);
+    // debugf("writing byte 0x%x to io at 0x%x", val, addr);
     switch (addr) {
         case 0x0:
             port0_out = val;

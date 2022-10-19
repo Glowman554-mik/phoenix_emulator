@@ -7,6 +7,7 @@
 #define SILENT
 #include <cpu_core.h>
 #include <cstdint>
+#include <lcd.hpp>
 
 UnbufferedSerial serial(USBTX, USBRX, 38400);
 
@@ -153,8 +154,20 @@ void programing_mode() {
 }
 
 int main() {
+	software_lcd lcd;
+    lcd.set_flags(LCD_CURSOR);
+
+	lcd.clear();
+	lcd.puts("upload mode");
     programing_mode();
-    core_run();
+    
+	lcd.clear();
+	lcd.puts("running...");
+	core_run();
+
+	lcd.clear();
+	lcd.puts("HALT");
+
     while (true) {
     }
 }

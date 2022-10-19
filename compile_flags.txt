@@ -1,4 +1,5 @@
 -Iinclude
+-Ilcdlib
 -Imbed-os/cmsis/CMSIS_5/CMSIS/RTOS2/RTX/Config
 -Imbed-os/cmsis/CMSIS_5/CMSIS/RTOS2/RTX/Include
 -Imbed-os/cmsis/CMSIS_5/CMSIS/RTOS2/RTX/Include1

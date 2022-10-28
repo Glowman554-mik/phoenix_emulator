@@ -60,14 +60,14 @@ void cpu_write_byte(uint16_t addr, uint8_t val) {
 }
 
 PortOut port0_out(PortC, 0b11111111);
-PortIn port0_in(PortC, 0b1111111100000000);
+PortIn port0_in(PortB, 0b11111111);
 
 uint8_t cpu_io_read(uint16_t addr) {
 	/// debugf("reading byte from io at 0x%x", addr);
 
     switch (addr) {
         case 0x0:
-            return port0_in >> 8;
+            return port0_in;
         default:
             return 0;
     }
@@ -153,20 +153,23 @@ void programing_mode() {
 	}
 }
 
-int main() {
-	software_lcd lcd;
-    lcd.set_flags(LCD_CURSOR);
+// #define LCD_CMD(expr) expr
+#define LCD_CMD(expr)
 
-	lcd.clear();
-	lcd.puts("upload mode");
+int main() {
+	LCD_CMD(software_lcd lcd);
+    LCD_CMD(lcd.set_flags(LCD_CURSOR));
+
+	LCD_CMD(lcd.clear());
+	LCD_CMD(lcd.puts("upload mode"));
     programing_mode();
     
-	lcd.clear();
-	lcd.puts("running...");
+	LCD_CMD(lcd.clear());
+	LCD_CMD(lcd.puts("running..."));
 	core_run();
 
-	lcd.clear();
-	lcd.puts("HALT");
+	LCD_CMD(lcd.clear());
+	LCD_CMD(lcd.puts("HALT"));
 
     while (true) {
     }
